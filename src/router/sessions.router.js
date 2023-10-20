@@ -2,6 +2,7 @@ const express = require("express");
 //const mongoose = require("mongoose");
 const router = express.Router();
 const modeloUsuarios = require("../dao/DB/models/usuariosGithub.modelo.js");
+const modeloUsers = require("../dao/DB/models/usuariosGithub.modelo.js");
 const crypto = require("crypto");
 
 //PARA TRAER PASSPORT
@@ -16,13 +17,15 @@ router.get("/errorRegistro", (req, res) => {
 });
 
 router.post("/registro", async (req, res, next) => {
-  let nombre = req.body.nombre;
+  let nombre = req.body.first_name;
+  let apellido = req.body.last_name;
+  let age = req.body.age;
   let email = req.body.email;
   let password = req.body.password;
-   let existe = await modeloUsuarios.findOne({ email });
+  let existe = await modeloUsers.findOne({ email });
 
 
-  if (!nombre || !email || !password) {
+  if (!nombre || !apellido || !age || !email || !password) {
     return res.redirect("/registro?error=Faltan datos");
   }
 
@@ -43,29 +46,6 @@ router.post("/registro", async (req, res, next) => {
   })(req, res, next);
 });
 
-/*
-router.post(
-  "/registro",
-  passport.authenticate("registro", {
-    failureRedirect: "/registro?error",
-  }),
-  async (req, res) => {
-    try {
-      let { nombre, email, password } = req.body;
-
-      console.log(req.user);
-
-      res.redirect(`/login?usuarioCreado=${email}`);
-    } catch (error) {
-      console.error("Error al registrar usuario:", error);
-      //res.status(500).send("Ocurrió un error al registrar el usuario.");
-      return res
-        .status(500)
-        .redirect("/login?error=Ocurrió un error al registrar el usuario");
-    }
-  }
-);
-*/
 
 router.get("/errorLogin", (req, res) => {
   res.setHeader("Content-Type", "application/json");

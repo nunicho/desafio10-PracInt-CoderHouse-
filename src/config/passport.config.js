@@ -4,7 +4,7 @@ const passport = require("passport");
 
 // PARA PASSPORT LOCAL
 const local = require("passport-local");
-const modeloUsuarios = require("../dao/DB/models/usuariosGithub.modelo.js");
+const modeloUsers = require("../dao/DB/models/users.modelo.js");
 
 //PARA PASSPORT GITHUB
 const github = require("passport-github2");
@@ -23,21 +23,25 @@ passport.use(
     },
     async (req, username, password, done) => {
       try {
-        let { nombre, email, password } = req.body;
+        let { first_name, last_name, email, age, password } = req.body;
 
-        if (!nombre || !email || !password) {
+        if (!first_name || !last_name || !email || !age || !password) {
           return done(null, false, "Por favor, complete todos los campos.");
         }
 
-        let existe = await modeloUsuarios.findOne({ email });
+        let existe = await modeloUsers.findOne({ email });
         if (existe) {
           return done(null, false, "El correo electrónico ya está registrado");
         }
 
-        let usuario = await modeloUsuarios.create({
-          nombre,
+        let usuario = await modeloUsers.create({
+          first_name,
+          last_name,
           email,
+          age,    
           password: util.generaHash(password),
+          cart: email, //no se me ocurrió de momento cómo asignar un Id con referencia a Carts
+          role:"user"
         });
 
         return done(null, usuario);
@@ -60,7 +64,7 @@ passport.use(
             return done(null, false, "Faltan datos");
           }
 
-          let usuario = await modeloUsuarios.findOne({ email: username });
+          let usuario = await modeloUsers.findOne({ email: username });
           if (!usuario) {
             return done(null, false, "Credenciales incorrectas");
           } else {
@@ -70,10 +74,10 @@ passport.use(
           }
 
           usuario = {
-            nombre: usuario.nombre,
+            nombre: usuario.first_name,
             email: usuario.email,
             _id: usuario._id,
-            rol: "usuario",
+            rol: usuario.role
           };
 
           return done(null, usuario);
