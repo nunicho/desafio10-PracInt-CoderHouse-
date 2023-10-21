@@ -1,9 +1,9 @@
 <body>
     
-    {{#ifEquals usuario.rol 'administrador'}}
+    {{#ifEquals usuario.role 'administrador'}}
             <h2>Bienvenido, ADMINISTRADOR {{usuario.nombre}}!</h2>
     {{/ifEquals}}
-    {{#ifEquals usuario.rol 'usuario'}}
+    {{#ifEquals usuario.role 'user'}}
         <h2>Bienvenido, Usuario {{usuario.nombre}}!</h2>
     {{/ifEquals}}
     

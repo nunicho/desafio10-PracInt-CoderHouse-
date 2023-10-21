@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const modeloUsuariosGithub =mongoose.model('usuarios', new mongoose.Schema({
+const modeloUsuariosGithub =mongoose.model('githubusers', new mongoose.Schema({
     nombre: String,
     email:{
         type: String,
@@ -9,7 +9,7 @@ const modeloUsuariosGithub =mongoose.model('usuarios', new mongoose.Schema({
     },
     password: String,
     github: {},
-    rol: String
+    role: String
 }))
 
 module.exports = modeloUsuariosGithub;

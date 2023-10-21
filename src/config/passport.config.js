@@ -77,7 +77,7 @@ passport.use(
             nombre: usuario.first_name,
             email: usuario.email,
             _id: usuario._id,
-            rol: usuario.role
+            role: usuario.role
           };
 
           return done(null, usuario);
@@ -107,7 +107,7 @@ passport.use(
               nombre: profile._json.name,
               email: profile._json.email,
               github: profile,
-              rol: "usuario",
+              role: "user",
             });
           }
 
