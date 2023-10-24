@@ -95,6 +95,8 @@ router.get(
   (req, res) => {}
 );
 
+
+
 router.get(
   "/callbackGithub",
   passport.authenticate("loginGithub", {
@@ -137,4 +139,18 @@ router.post("/loginAdmin", async (req, res) => {
   }
 });
 
+
+router.get("/current", (req, res) => {
+  if (req.isAuthenticated()) {
+    // Si el usuario está autenticado, puedes acceder a la información del usuario a través de req.user
+    const usuarioActual = req.user;
+    res.status(200).json(usuarioActual);
+  } else {
+    // Si el usuario no está autenticado, puedes devolver un objeto vacío o un mensaje de error.
+    res.status(401).json({ message: "Usuario no autenticado" });
+  }
+});
+
 module.exports = router;
+
+

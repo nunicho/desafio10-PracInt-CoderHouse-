@@ -52,41 +52,41 @@ passport.use(
   )
 );
 
-  passport.use(
-    "loginLocal",
-    new local.Strategy(
-      {
-        usernameField: "email",
-      },
-      async (username, password, done) => {
-        try {
-          if (!username || !password) {
-            return done(null, false, "Faltan datos");
-          }
-
-          let usuario = await modeloUsers.findOne({ email: username });
-          if (!usuario) {
-            return done(null, false, "Credenciales incorrectas");
-          } else {
-            if (!util.validaHash(usuario, password)) {
-              return done(null, false, "Clave inválida");
+    passport.use(
+      "loginLocal",
+      new local.Strategy(
+        {
+          usernameField: "email",
+        },
+        async (username, password, done) => {
+          try {
+            if (!username || !password) {
+              return done(null, false, "Faltan datos");
             }
+
+            let usuario = await modeloUsers.findOne({ email: username });
+            if (!usuario) {
+              return done(null, false, "Credenciales incorrectas");
+            } else {
+              if (!util.validaHash(usuario, password)) {
+                return done(null, false, "Clave inválida");
+              }
+            }
+
+            usuario = {
+              nombre: usuario.first_name,
+              email: usuario.email,
+              _id: usuario._id,
+              role: usuario.role
+            };
+
+            return done(null, usuario);
+          } catch (error) {
+            return done(error);
           }
-
-          usuario = {
-            nombre: usuario.first_name,
-            email: usuario.email,
-            _id: usuario._id,
-            role: usuario.role
-          };
-
-          return done(null, usuario);
-        } catch (error) {
-          return done(error);
         }
-      }
-    )
-  );
+      )
+    );
 
   passport.use(
     "loginGithub",
@@ -127,6 +127,8 @@ passport.use(
     let usuario = await modeloUsuariosGithub.findById(id);
     return done(null, usuario);
   });
+
+
 }; // fin de inicializaPassport
 
 module.exports = inicializaPassport;
