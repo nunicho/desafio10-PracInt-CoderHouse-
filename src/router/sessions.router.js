@@ -144,6 +144,10 @@ router.post("/loginAdmin", async (req, res) => {
   }
 });
 
+
+module.exports = router;
+
+
 /*
 router.get("/current", (req, res) => {
   if (req.isAuthenticated()) {
@@ -156,6 +160,3 @@ router.get("/current", (req, res) => {
   }
 });
 */
-module.exports = router;
-
-
