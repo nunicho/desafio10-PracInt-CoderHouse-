@@ -25,8 +25,14 @@ passport.use(
       try {
         let { first_name, last_name, email, age, password } = req.body;
 
-        if (!first_name || !last_name || !email || !age || !password) {
+        if (!first_name || !last_name || !age || !email || !password) {
           return done(null, false, "Por favor, complete todos los campos.");
+        }
+
+        // Añadir validación para age
+        age = parseInt(age); // Convertir age a número
+        if (isNaN(age) || age <= 13 || age >= 120) {
+          return done(null, false, "La edad debe ser mayor a 13 y menor a 120");
         }
 
         let existe = await modeloUsers.findOne({ email });
@@ -34,14 +40,16 @@ passport.use(
           return done(null, false, "El correo electrónico ya está registrado");
         }
 
+         const cartId = generateCustomCartId();
+
         let usuario = await modeloUsers.create({
           first_name,
           last_name,
           email,
-          age,    
+          age,
           password: util.generaHash(password),
-          cart: email, //no se me ocurrió de momento cómo asignar un Id con referencia a Carts
-          role:"user"
+          cart: cartId,
+          role: "user",
         });
 
         return done(null, usuario);
@@ -130,5 +138,12 @@ passport.use(
 
 
 }; // fin de inicializaPassport
+
+// FUNCION PARA ASIGNAR UN ID ÚNICO A CART
+function generateCustomCartId() {
+  const randomNumber = Math.floor(Math.random() * 1000) + 1; 
+  const cartId = `${Date.now().toString()}-${randomNumber}`;
+  return cartId;
+}
 
 module.exports = inicializaPassport;

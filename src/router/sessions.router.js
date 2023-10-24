@@ -29,6 +29,11 @@ router.post("/registro", async (req, res, next) => {
     return res.redirect("/registro?error=Faltan datos");
   }
 
+  age = parseInt(age); // Convertir age a número
+      if (isNaN(age) || age <= 13 || age >= 120) {
+        return res.redirect("/registro?error=La edad debe estar comprendida entre 13 y 120");
+      }
+
   passport.authenticate("registro", async (error) => {
     if (error) {
       return res.redirect(
@@ -139,7 +144,7 @@ router.post("/loginAdmin", async (req, res) => {
   }
 });
 
-
+/*
 router.get("/current", (req, res) => {
   if (req.isAuthenticated()) {
     // Si el usuario está autenticado, puedes acceder a la información del usuario a través de req.user
@@ -150,7 +155,7 @@ router.get("/current", (req, res) => {
     res.status(401).json({ message: "Usuario no autenticado" });
   }
 });
-
+*/
 module.exports = router;
 
 
