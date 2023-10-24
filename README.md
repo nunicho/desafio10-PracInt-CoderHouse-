@@ -2,31 +2,31 @@
 Información útil para analizar este repositorio
 
 
-1. ## ALUMNO: 
+## 1. ALUMNO: 
 
 Mauricio Javier ALONSO
 
 
-2. ## COMISION:
+## 2. COMISION:
 
  N° 55565
 
 
-3. ## TITULO DESAFIO ENTREGABLE: 
+## 3. TITULO DESAFIO ENTREGABLE: 
 
 2da Práctica de integración sobre tu ecommerce
 
-4. ## N° DESAFIO ENTREGABLE: 
+## 4. N° DESAFIO ENTREGABLE: 
 
 N° 10
 
-5. ## CONSIGNA DESAFIO ENTREGABLE: 
+## 5. CONSIGNA DESAFIO ENTREGABLE: 
 
 Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes...
 
 
 
-6. ## Como configurar una peticiones a la base de datos / Producto:
+## 6. Como configurar una peticiones a la base de datos / Producto:
 
 En postman: 
 GET / http://localhost:8080/api/products
@@ -60,7 +60,7 @@ PUT / http://localhost:8080/api/products/65160d3c2d9e25f3e602ed3e
 
 }
 
-7. ## Como configurar una petición POST de Carrito:
+## 7. Como configurar una petición POST de Carrito:
 
 GET / http://localhost:8080/api/carts
 
@@ -122,9 +122,7 @@ PUT / http://localhost:8080/api/Carts/65161408d2e9f8ac5bc09f87/products/65160d8f
 
 DELETE / http://localhost:8080/api/carts/65161408d2e9f8ac5bc09f87
 
-DELETE // http://localhost:8080/api/carts/651615487520733661cb99f0/products/65160ded2d9e25f3e602ed4a  // para eliminar un producto específico de un carrito, sin borrar el carrito
-
-8. ## FileSystem y MongoDB:
+DELETE // http://localhost:8080/api/carts/651615487520733661cb99f0/products/65160ded2d9e25f3e602ed4a  // para eliminar un producto específico de un carrito, sin borrar el carrit## 8. FileSystem y MongoDB:
 
 Puse todo el carpeta DAO, pero dejé funcionales las vistas de handlebars. El usuario puede elegir navegar dentro de filesystem o MongoDB.
 
@@ -132,22 +130,22 @@ Para esta entrega se creó un form, con un input donde el usuario ingresa el nú
 http://localhost:8080/carts/651615487520733661cb99f0
 
 
-9. ## Usuario Administrador:
+## 9. Usuario Administrador:
 Usuario: Coder
 Email: adminCoder@coder.com
 Pass: adminCod3r123
 
 Se puso hardcodeado en el código de sessions.router.js porque no debía estar en la base de datos de usuarios. 
 
-10. ## Claves para el acceso a Github
+## 10. Claves para el acceso a Github
 
 clientID: "Iv1.cc00dcea44bb45db",
 clientSecret: "f942dbbff3e0ead468ab3731ba8b0283a6d70057",
 callbackURL: "http://localhost:8080/api/sessions/callbackGithub",
 
-11. ## Sessions o JWT
+## 11. Sessions o JWT
 Para este repo se eligió Sessions
 
-12. ## Ruta Current
+## 12. Ruta Current
 
 Se creó la ruta "/current" en "vistas.router.js" que informa si hay un usuario autenticado o no. 
