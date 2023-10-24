@@ -340,8 +340,8 @@ router.get("/loginAdmin", (req, res) => {
 //  RUTA CURRENT
 
 router.get("/current", (req, res) => {
-  // Verificar si el usuario está autenticado y obtener sus datos.
-  const user = req.session.usuario; // Supongamos que req.user contiene los datos del usuario.
+ 
+  const user = req.session.usuario; 
 
   if (!user) {
     return res.status(401).render("current", {
@@ -351,17 +351,10 @@ router.get("/current", (req, res) => {
 
   res.status(200).render("current", {
     estilo: "login.css",
-    usuario: user, // Pasar los datos del usuario a la vista
+    usuario: user, 
   });
 });
 
-/*
-router.get("/current", (req, res) => {
-  res.status(200).render("current", {
-    verLogin: false,
-    estilo: "login.css",
-  });
-});
-*/
+
 
 module.exports = router;

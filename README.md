@@ -14,15 +14,15 @@ Mauricio Javier ALONSO
 
 3. ## TITULO DESAFIO ENTREGABLE: 
 
-Refactor de nuestro login
+2da Práctica de integración sobre tu ecommerce
 
 4. ## N° DESAFIO ENTREGABLE: 
 
-N° 9
+N° 10
 
 5. ## CONSIGNA DESAFIO ENTREGABLE: 
 
-Con base en el login de nuestro entregable anterior, refactorizar para incluir los nuevos  conceptos.
+Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes...
 
 
 
@@ -144,3 +144,10 @@ Se puso hardcodeado en el código de sessions.router.js porque no debía estar e
 clientID: "Iv1.cc00dcea44bb45db",
 clientSecret: "f942dbbff3e0ead468ab3731ba8b0283a6d70057",
 callbackURL: "http://localhost:8080/api/sessions/callbackGithub",
+
+11. ## Sessions o JWT
+Para este repo se eligió Sessions
+
+12. ## Ruta Current
+
+Se creó la ruta "/current" en "vistas.router.js" que informa si hay un usuario autenticado o no. 
